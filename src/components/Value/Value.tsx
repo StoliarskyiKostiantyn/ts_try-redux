@@ -1,10 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
-type Props = {
-  value: number;
-};
-
-const Value = ({ value }: Props) => {
+const Value = () => {
+  const value = useSelector(
+    (state: { counter: { value: any } }) => state.counter.value
+  );
   return <span className="Counter__value">{value}</span>;
 };
 export default Value;

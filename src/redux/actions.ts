@@ -1,6 +1,3 @@
 import { createAction } from "@reduxjs/toolkit";
-
-const increment = createAction<number, "increment">("increment");
-const decrement = createAction<number, "decrement">("decrement");
-
-export { increment, decrement };
+export const increment = createAction<number, "increment">("increment");
+export const decrement = createAction<number, "decrement">("decrement");

@@ -1,18 +1,22 @@
-import React, { MouseEventHandler } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
-type Props = {
-  step: number;
-  onIncrement: MouseEventHandler<HTMLButtonElement>;
-  onDecrement: MouseEventHandler<HTMLButtonElement>;
-};
-
-const Controls = ({ step, onIncrement, onDecrement }: Props) => {
+const Controls = () => {
+  const dispatch = useDispatch();
+  const step = useSelector(
+    (state: { counter: { step: number } }) => state.counter.step
+  );
   return (
     <div className="Counter__controls">
-      <button type="button" onClick={onIncrement}>
+      <button
+        type="button"
+        onClick={() => dispatch({ type: "increment", payload: step })}
+      >
         Увеличить на {step}
       </button>
-      <button type="button" onClick={onDecrement}>
+      <button
+        type="button"
+        onClick={() => dispatch({ type: "decrement", payload: step })}
+      >
         Уменьшить на {step}
       </button>
     </div>
