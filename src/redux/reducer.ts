@@ -1,15 +1,19 @@
-import { createReducer, combineReducers } from "@reduxjs/toolkit";
-import { increment, decrement } from "./actions";
-
-const valueReducer = createReducer(0, {
-  [increment.type]: (state: number, action: { payload: number }) =>
-    state + action.payload,
-  [decrement.type]: (state: number, action: { payload: number }) =>
-    state - action.payload,
+import { createSlice } from "@reduxjs/toolkit";
+const initialState = {
+  value: 0,
+  step: 5,
+};
+const valueSlice = createSlice({
+  name: "value",
+  initialState,
+  reducers: {
+    increment(state) {
+      state.value += 1;
+    },
+    decrement(state) {
+      state.value -= 1;
+    },
+  },
 });
-
-const stepReducer = (state = 5, action: { payload: number }) => state;
-export default combineReducers({
-  value: valueReducer,
-  step: stepReducer,
-});
+export const { increment, decrement } = valueSlice.actions;
+export default valueSlice.reducer;
